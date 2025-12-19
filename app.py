@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 
-df = pd.read_excel(r'construindo-indices/atas.xlsx')
+df = pd.read_excel(r'construindo-indices/atas.parquet')
 
 # garantir datetime
 df["data_reunião"] = pd.to_datetime(df["data_reunião"])

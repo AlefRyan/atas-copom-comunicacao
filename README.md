@@ -1,4 +1,4 @@
-# Copom Communication Dashboard
+# Comunicação Copom
 
 Este projeto constrói indicadores quantitativos a partir das atas do Comitê de Política Monetária (Copom) do Banco Central do Brasil, com o objetivo de analisar a comunicação de política monetária ao longo do tempo.
 
