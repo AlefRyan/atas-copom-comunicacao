@@ -26,6 +26,7 @@ page = st.sidebar.radio(
     "Navegação",
     [
         "🏠 Visão Geral",
+        "Raspagem de Dados"
         "🧭 Postura Monetária (HD)",
         "⚠️ Incerteza Comunicacional",
         "🔄 Alinhamento Discurso–Ação",
@@ -62,6 +63,35 @@ if page == "🏠 Visão Geral":
     Valores positivos indicam comunicação mais **hawkish**,
     enquanto valores negativos refletem viés **dovish**.
     """)
+    
+
+elif page == "Raspagem de Dados":
+    st.title("🕷️ Raspagem de Dados – Atas do Copom")
+
+    st.markdown("""
+    Esta etapa é responsável pela **coleta automatizada das atas do Copom**
+    diretamente do site do Banco Central do Brasil.
+
+    O código abaixo realiza:
+    - Navegação automatizada com Selenium
+    - Download das atas
+    - Extração e organização do texto
+    - Armazenamento estruturado para análise posterior
+    """)
+
+    from pathlib import Path
+
+    caminho_codigo = Path("script-coleta-dados/coleta_atas.py")
+    # ajuste o nome se o arquivo for outro
+
+    if caminho_codigo.exists():
+        with open(caminho_codigo, "r", encoding="utf-8") as f:
+            codigo = f.read()
+
+        st.subheader("Código de raspagem")
+        st.code(codigo, language="python")
+    else:
+        st.warning("Arquivo de código de raspagem não encontrado.")
 
 # -----------------------------
 # 🧭 POSTURA MONETÁRIA

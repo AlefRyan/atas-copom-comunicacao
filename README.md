@@ -10,7 +10,7 @@ O foco do projeto é transformar o conteúdo textual das atas em medidas numéri
 
 ---
 
-## 📊 Indicadores Construídos
+## Indicadores Construídos
 
 ### Índice Hawk–Dove (HD)
 
@@ -32,7 +32,7 @@ Este indicador não busca avaliar acertos ou erros de política monetária, mas 
 
 ---
 
-## 🗂️ Dados
+## Dados
 
 - **Fonte:** Banco Central do Brasil
 - **Documentos:** Atas das reuniões do Copom
@@ -42,7 +42,7 @@ A coleta dos documentos, extração do texto e limpeza foram realizadas **offlin
 
 ---
 
-## ⚙️ Metodologia (resumo)
+## Metodologia (resumo)
 
 1. Coleta das atas no site oficial do Banco Central, com Selenium
 2. Extração e limpeza do texto
@@ -51,16 +51,3 @@ A coleta dos documentos, extração do texto e limpeza foram realizadas **offlin
 5. Visualização interativa via Streamlit
 
 O modelo é deliberadamente parcimonioso, com foco no conteúdo informacional da comunicação, e não busca identificar relações causais.
-
----
-
-## 🖥️ Aplicação
-
-O projeto inclui uma aplicação interativa desenvolvida em **Streamlit**, que permite visualizar os indicadores ao longo do tempo.
-
-Para rodar localmente:
-
-```bash
-pip install -r requirements.txt
-streamlit run app.py
-```
