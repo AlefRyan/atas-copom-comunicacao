@@ -82,24 +82,29 @@ elif page == "Raspagem de Dados":
     - Armazenamento estruturado para análise posterior
     """)
 
-    from pathlib import Path
+    
 
     caminho_codigo = Path("script-coleta-dados/bcb.ipynb")
 
-    if caminho_codigo.exists():
-        st.subheader("Código de raspagem (Notebook)")
+    with open(caminho_codigo, "r", encoding="utf-8") as f:
+        notebook = json.load(f)
 
-        with open(caminho_codigo, "r", encoding="utf-8") as f:
-            notebook = json.load(f)
+    for cell in notebook.get("cells", []):
 
-        for i, cell in enumerate(notebook.get("cells", []), start=1):
-            if cell.get("cell_type") == "code":
-                codigo = "".join(cell.get("source", []))
-                if codigo.strip():
-                    st.markdown(f"**Célula {i}**")
-                    st.code(codigo, language="python")
-    else:
-        st.warning("Notebook de raspagem não encontrado.")
+        # ---- células MARKDOWN ----
+        if cell.get("cell_type") == "markdown":
+            texto = "".join(cell.get("source", []))
+            if texto.strip():
+                st.markdown(texto)
+
+        # ---- células CÓDIGO ----
+        elif cell.get("cell_type") == "code":
+            codigo = "".join(cell.get("source", []))
+            if codigo.strip():
+                st.code(codigo, language="python")
+
+else:
+    st.warning("Notebook de raspagem não encontrado.")
 
 # -----------------------------
 # 🧭 POSTURA MONETÁRIA
