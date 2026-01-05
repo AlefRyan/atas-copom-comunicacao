@@ -2,6 +2,9 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import json
+from pathlib import Path
+
 
 # -----------------------------
 # Configurações gerais
@@ -81,23 +84,28 @@ elif page == "Raspagem de Dados":
 
     from pathlib import Path
 
-    caminho_codigo = Path("script-coleta-dados/bcb.py")
-    # ajuste o nome se o arquivo for outro
+    caminho_codigo = Path("script-coleta-dados/bcb.ipynb")
 
     if caminho_codigo.exists():
-        with open(caminho_codigo, "r", encoding="utf-8") as f:
-            codigo = f.read()
+        st.subheader("Código de raspagem (Notebook)")
 
-        st.subheader("Código de raspagem")
-        st.code(codigo, language="python")
+        with open(caminho_codigo, "r", encoding="utf-8") as f:
+            notebook = json.load(f)
+
+        for i, cell in enumerate(notebook.get("cells", []), start=1):
+            if cell.get("cell_type") == "code":
+                codigo = "".join(cell.get("source", []))
+                if codigo.strip():
+                    st.markdown(f"**Célula {i}**")
+                    st.code(codigo, language="python")
     else:
-        st.warning("Arquivo de código de raspagem não encontrado.")
+        st.warning("Notebook de raspagem não encontrado.")
 
 # -----------------------------
 # 🧭 POSTURA MONETÁRIA
 # -----------------------------
 elif page == "🧭 Postura Monetária (HD)":
-    st.title("🧭 Índice Hawk–Dove (HD)")
+    st.title("🧭 Postura Monetária (HD)")
 
     st.markdown("""
     O índice Hawk–Dove resume a **direção da postura monetária**
