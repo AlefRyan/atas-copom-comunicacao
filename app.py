@@ -81,7 +81,7 @@ elif page == "Raspagem de Dados":
 
     from pathlib import Path
 
-    caminho_codigo = Path("script-coleta-dados/coleta_atas.py")
+    caminho_codigo = Path("script-coleta-dados/bcb.py")
     # ajuste o nome se o arquivo for outro
 
     if caminho_codigo.exists():
