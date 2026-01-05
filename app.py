@@ -86,29 +86,27 @@ elif page == "Raspagem de Dados":
 
     caminho_codigo = Path("script-coleta-dados/bcb.ipynb")
 
-    with open(caminho_codigo, "r", encoding="utf-8") as f:
-        notebook = json.load(f)
+    if caminho_codigo.exists():
+        with open(caminho_codigo, "r", encoding="utf-8") as f:
+            notebook = json.load(f)
 
-    for cell in notebook.get("cells", []):
+        for cell in notebook.get("cells", []):
+            if cell.get("cell_type") == "markdown":
+                texto = "".join(cell.get("source", []))
+                if texto.strip():
+                    st.markdown(texto)
 
-        # ---- células MARKDOWN ----
-        if cell.get("cell_type") == "markdown":
-            texto = "".join(cell.get("source", []))
-            if texto.strip():
-                st.markdown(texto)
-
-        # ---- células CÓDIGO ----
-        elif cell.get("cell_type") == "code":
-            codigo = "".join(cell.get("source", []))
-            if codigo.strip():
-                st.code(codigo, language="python")
-
-else:
-    st.warning("Notebook de raspagem não encontrado.")
+            elif cell.get("cell_type") == "code":
+                codigo = "".join(cell.get("source", []))
+                if codigo.strip():
+                    st.code(codigo, language="python")
+    else:
+        st.warning("Notebook de raspagem não encontrado.")
 
 # -----------------------------
 # 🧭 POSTURA MONETÁRIA
 # -----------------------------
+
 elif page == "🧭 Postura Monetária (HD)":
     st.title("🧭 Postura Monetária (HD)")
 
