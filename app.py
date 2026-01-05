@@ -26,7 +26,7 @@ page = st.sidebar.radio(
     "Navegação",
     [
         "🏠 Visão Geral",
-        "Raspagem de Dados"
+        "Raspagem de Dados",
         "🧭 Postura Monetária (HD)",
         "⚠️ Incerteza Comunicacional",
         "🔄 Alinhamento Discurso–Ação",
